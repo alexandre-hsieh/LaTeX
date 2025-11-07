@@ -1,0 +1,73 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage[english]{babel}
+\usepackage[a4paper, margin=1in]{geometry}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+
+\begin{document}
+
+\begin{center}
+\textbf{\large Research Proposal: The Impact of Climate Disasters on Behaviors of Individual and Institutional Investors}
+\end{center}
+
+\section{Abstract}
+\hspace*{0.5cm}
+This study examines how individual and institutional investors react to climate disasters, focusing on the difference between individual and institutional investors. Using triple difference estimation with a comprehensive dataset, I analyze whether individual investors overreact to climate disasters, while institutional investors respond more rationally. In addition, I examine how these reactions impact investment performance. This study highlights the association between climate change, investor behaviors, and portfolio management.
+
+
+\section{Introduction and Literature Review}
+\hspace*{0.5cm}
+Climate change poses significant threats to the world, with rising temperatures, extreme weather, and rising sea level causing widespread damage. Many past studies have investigated the impacts of climate change on financial systems. Barnett, Brock, and Hansen (2020) combined decision theory and asset pricing methods to analyze how climate risks affect both financial markets and economies. Engle et al. (2020) used textual analysis to create portfolios that hedge against climate change news. Alok, Kumar, and Wermers (2020) investigated the reactions of mutual fund managers to climate change and found that fund managers overestimated climate risks once they were near disasters. Ilhan et al. (2023) corroborated the association between climate risk disclosures and institutional ownership. Regarding the impacts of climate change on real estate pricing, Baldauf, Garlappi, and Yannelis (2020) concluded that different beliefs about climate change influenced how people valued real estate, and Murfin and Spiegel (2020) summarized that the risk of sea level rise would not significantly affect housing prices near the coast. Hong, Li, and Xu (2019) argued that stock prices did not reflect climate change risks by examining food company profits, stock returns, and relevant climate events.
+
+\vspace{0.5cm}
+Although many studies have explained the effect of climate change on asset pricing, portfolio management, and investor behaviors, few literatures have delineated how differently institutional and individual investors react to climate risk. Individual investors are often influenced by news and driven by emotions, leading to impulsive decisions, including panic-sell during market downturns (Barber and Odean, 2008; Li et al., 2017). Institutional investors, in contrast, tend to have a more disciplined approach and are less likely to be swayed by bias. Bias describing investors overestimating the risks of rare events is salience bias. Bordalo, Gennaioli, and Shleifer (2012) argue that under salience bias, investors may overweight the probability of rare events, becoming overly risk-averse and underweight the investment affected by the events. It can be inferred that individual investors are more likely to perform panic-sell once being affected by rare climate disasters, while institutional investors tend to remain calm and may buy undervalued assets.
+
+\vspace{0.5cm}
+In this paper, I hypothesized that individual investors exposed to rare climate events tend to overestimate the probability of climate disasters in the future and thus underweight the stocks exposed to these events. Institutional investors, however, show less salient bias and can accurately estimate the impact of climate events, appropriately adjusting their portfolios. In addition, investors living in different regions have different recognitions of climate risks. For example, people living in Minnesota may be less aware of hurricane threats than those living in Louisiana, preventing them from reducing their holdings in firms located in the Southern United States. Therefore, besides overestimating, both individual and institutional investors can underestimate climate risks if they are far from the site where disasters occur, whereas institutional investors show less underestimation because of superior information. As individual investors overreact or underreact to climate disasters, the portfolio performances of individual investors underperform those of institutional investors.
+
+\section{Research design and methodology}
+\hspace*{0.5cm}
+The research focuses on the US equity market. I obtain quarterly trading records and the portfolios of individual investors from the New York Stock Exchange. Following Ilhan et al. (2023), I obtain mutual fund and institutional equity ownership and transaction data from FactSet. Regarding data related to climate disasters, including hurricanes, floods, tornadoes, and wildfires, I follow Alok, Kumar, and Wermers (2020) to obtain data from SHELDUS that provides the names, locations, and damages in dollars of climate events. To test the effect of investor location on their underestimation or overestimation of climate impacts, I collect the addresses of individual investors and mutual funds' headquarters. All of the data mentioned above range from 2010 to 2025.
+
+\vspace{0.5cm}
+I employ triple difference estimation (Olden and Møen, 2022) that compares the portfolios of individual investors to those of institutional investors, with the model listed as follows:
+\begin{align*} 
+WEIGHT_{sit} &= \beta_0 + \beta_1 IND + \beta_2 DIST_{si} + \beta_3 POST_t \\
+             &+ \beta_4 (IND \times DIST_{sit}) + \beta_5 (IND \times POST_t) \\
+             &+ \beta_6 (DIST_{si} \times POST_t) + \beta_7 (IND \times DIST_{si} \times POST_t) \\
+             &+ \gamma_j X_{jit} + \epsilon_{sit}
+\end{align*}
+$WEIGHT_{sit}$ is the weight of the stock $s$ held by the investor $i$ at the end of the quarter $t$. $IND$ is the investor type, with individuals assigned to the treatment group and institutions to the control group. $DIST_{si}$ is the distance between investor $i$ and the headquarters of invested firm $s$. The treatment group includes investors located within 100 miles of the headquarters, while the control group includes investors located farther away. $POST_t$ is 0 for the quarter before the occurrence of climate events and is 1 for the quarter when the events occur. $\gamma_j X_{jit}$ represents a set of control variables. The estimators of $\beta_5$, $\beta_6$, and $\beta_7$ have different empirical implications. As individual investors may reduce their stock holdings more significantly than institutional investors, the coefficient $\beta_5$ should be negative. A negative $\beta_6$ suggests that investors living closer to the site where climate disasters occur decrease their stock holdings. $\beta_7$ captures the general weight change affected by the type of investor, distance, and climate events.
+
+\vspace{0.5cm}
+If investors can correctly estimate the impact of climate events on firms and adjust their portfolios accordingly by underweighting specific stocks, they outperform those who merely buy and hold. To understand how changes in weights reflect subsequent stock performance, I first calculate the changes with the following model.
+\[\Delta WEIGHT_{sit}=\frac{1}{n} \biggl\{ \sum_{k=1}^n \left[ WIGHT_{sit}-\frac{1}{2}(WEIGHT_{si,t-1}+WEIGHT_{si,t-2})\right] \biggr\}\],
+where $WEIGHT_{sit}$, $WEIGHT_{si,t-1}$, and $WEIGHT_{si,t-2}$ denote the weight of stock $s$ of investor $i$ at quarter $t$, $t-1$, and $t-2$, respectively. Then I sort stocks into three equally weighted groups in sequence, with the first group representing the stocks with the lowest change in weight and the third group representing the stocks with the highest change in weight. The first group consists of the most underweighted stocks, and the third group consists of the most overweighted stocks.
+
+\vspace{0.5cm}
+The next step is to compare the performance of each group of different types of investors. Following Daniel et al. (2012), I calculate DGTW-adjusted returns for each group over four different time periods: one year before the event quarter (Y-1), the event quarter (Y), and one (Y+1) and two years (Y+2) after the event quarter. If investors underweight stocks because of superior information, the adjusted returns of the first group in Y+1 and Y+2 should increase (decrease) more (less) significantly than those of the remaining groups. According to the hypotheses of this study, institutional investors show the above results, while individual investors show the opposite.
+
+\section{Contribution}
+\hspace{0.5cm}
+This study contributes to the literature by explaining the different beliefs of individual and institutional investors toward climate risks, together with information asymmetries that influence investment decisions. It also acts as a bridge linking portfolio management, behavioral finance, and climate finance. By examining how individual and institutional investors adjust their portfolios in response to climate disasters, this study provides empirical evidence showing how climate risks affect investment behavior and portfolio performance. In sum, this study sheds light on how climate change considerations affect portfolio choices and how cognitive biases influence portfolio performance.
+
+\newpage
+\section*{References}
+Alok, S., Kumar, N., Wermers, R., (2020) Do Fund Managers Misestimate Climatic Disaster Risk? Review of Financial Studies, 33(3), 1146–1183\\
+Baldauf, M., Garlappi, L., Yannelis, C., (2020) Does Climate Change Affect Real Estate Prices? Only If You Believe In It. Review of Financial Studies, 33(3), 1256–1295\\
+Barber, B.M., Odean, T., (2008) All That Glitters: The Effect of Attention and News on the Buying Behavior of Individual and Institutional Investors. Review of Financial Studies, 21(2), 785–818,
+Barnett, M., Brock, W., Hansen, L.P., (2020) Pricing Uncertainty Induced by Climate Change. Review of Financial Studies, 33(3), 1024-1066\\
+Bertrand, M., Duflo, E., Mullainathan, S., (2004) How Much Should We Trust Differences-In-Differences Estimates? Quarterly Journal of Economics, 119(1), 249–275.\\
+Bordalo, P., Gennaioli, N., Shleifer, A., (2012) Salience Theory of Choice Under Risk. The Quarterly Journal of Economics, 127(3), 1243–1285\\
+Daniel, K., Grinblatt, M., Titman, S., Wermers, R., (2012) Measuring Mutual Fund Performance with Characteristic-Based Benchmarks. Journal of Finance, 52(3), 1035-1058\\
+Engle, R.F., Giglio S., Kelly, B., Lee, H., Stroebel J., (2020) Hedging Climate Change News. Review of Financial Studies, 33(3), 1184-1216\\
+Hong, H., Li, F.W., Xu, J., (2019) Climate risks and market efficiency. Journal of Econometrics, 208, 265-281\\
+Ilhan, E., Krueger, P., Sautner, Z., Starks, L.T., (2023) Climate Risk Disclosure and Institutional Investors. Review of Financial Studies, 36(3), 2617–2650\\
+Li, W., Rhee G., Wang S.S., (2017) Differences in herding: Individual vs. institutional investors. Pacific Basin Finance Journal, 45, 174-185\\
+Murfin, J., Spiegel, M., (2020) Is the Risk of Sea Level Rise Capitalized in Residential Real Estate? Review of Financial Studies, 33(3), 1217–1255\\
+Olden, A., Møen, J., (2022) The triple difference estimator. Econometrics Journal, 25(3), 531–553
+
+\end{document}
